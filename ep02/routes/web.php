@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('listagem_usuario', 'UserController@listUser');
