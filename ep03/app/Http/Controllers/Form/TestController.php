@@ -29,4 +29,22 @@ class TestController extends Controller
     {
         return view('addUser');
     }
+
+    public function storeUser(Request $request)
+    {
+        //dd($request);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+        return redirect()->route('users.listAll');
+    }
+
+    public function editUser(User $user)
+    {
+        return view('editUser', [
+            'user' => $user
+        ]);
+    }
 }

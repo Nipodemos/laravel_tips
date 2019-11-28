@@ -20,17 +20,18 @@ Route::get('/', function () {
  */
 Route::get('usuarios', 'Form\\TestController@listAllUsers')->name('users.listAll');
 Route::get('usuarios/novo', 'Form\\TestController@addUser')->name('user.add');
+Route::get('usuarios/editar/{user}', 'Form\\TestController@editUser')->name('user.edit');
 Route::get('usuarios/{user}', 'Form\\TestController@listUser')->name('user.list');
 
 /**
  * VERBO POST
  */
-
+Route::post('usuarios/store', 'Form\\TestController@storeUser')->name('user.store');
 
 /**
  * VERBO PUT/PATCH
  */
-
+Router::put('usuarios/edit', 'Form\\TestController@edit')->name('user.edit/{user}');
 
 /**
  * VERBO DELETE
