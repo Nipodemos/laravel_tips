@@ -47,4 +47,25 @@ class TestController extends Controller
             'user' => $user
         ]);
     }
+
+    public function edit(User $user, Request $request)
+    {
+        $user->name = $request->name;
+        if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+            $user->email = $request->email;
+        }
+
+        if (!empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+        return redirect()->route('users.listAll');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('users.listAll');
+    }
 }

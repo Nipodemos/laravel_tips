@@ -9,8 +9,9 @@
 </head>
 
 <body>
-    <form action="{{route('user.edit')}}" method="post">
+    <form action="{{route('user.edit', ['user'=> $user])}}" method="post">
         @csrf
+        @method('put')
         <label for="">Nome do usuário</label>
         <input name="name" type="text" value="{{$user->name}}">
 

@@ -15,24 +15,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/**
- * VERBO GET
- */
-Route::get('usuarios', 'Form\\TestController@listAllUsers')->name('users.listAll');
-Route::get('usuarios/novo', 'Form\\TestController@addUser')->name('user.add');
-Route::get('usuarios/editar/{user}', 'Form\\TestController@editUser')->name('user.edit');
-Route::get('usuarios/{user}', 'Form\\TestController@listUser')->name('user.list');
+Route::group(['namespace' => 'Form'], function () {
 
-/**
- * VERBO POST
- */
-Route::post('usuarios/store', 'Form\\TestController@storeUser')->name('user.store');
+    /**
+     * VERBO GET
+     */
+    Route::get('usuarios', 'TestController@listAllUsers')->name('users.listAll');
+    Route::get('usuarios/novo', 'TestController@addUser')->name('user.add');
+    Route::get('usuarios/editar/{user}', 'TestController@editUser')->name('user.edit');
+    Route::get('usuarios/{user}', 'TestController@listUser')->name('user.list');
 
-/**
- * VERBO PUT/PATCH
- */
-Router::put('usuarios/edit', 'Form\\TestController@edit')->name('user.edit/{user}');
+    /**
+     * VERBO POST
+     */
+    Route::post('usuarios/store', 'TestController@storeUser')->name('user.store');
 
-/**
- * VERBO DELETE
- */
+    /**
+     * VERBO PUT/PATCH
+     */
+    Router::put('usuarios/edit', 'TestController@edit')->name('user.edit/{user}');
+
+    /**
+     * VERBO DELETE
+     */
+    Router::delete('usuarios/destroy/{user}', 'TestController@destroy')->name('user.destroy');
+
+});
